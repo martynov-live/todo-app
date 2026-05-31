@@ -27,6 +27,8 @@
       --check-done: #37352f;
       --orange: #d9730d;
       --orange-light: #fbecdd;
+      --green: #0f7b6c;
+      --green-light: #ddedea;
     }
 
     body {
@@ -42,35 +44,17 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    .app {
-      width: 100%;
-      max-width: 700px;
-      background: var(--bg);
-      min-height: 100vh;
-    }
+    .app { width: 100%; max-width: 700px; background: var(--bg); min-height: 100vh; }
 
-    .cover {
-      height: 160px;
-      background: linear-gradient(135deg, #e8f4fd 0%, #eef2ff 100%);
-    }
+    .cover { height: 160px; background: linear-gradient(135deg, #e8f4fd 0%, #eef2ff 100%); }
 
     .page-header { padding: 24px 56px 0; }
 
-    .page-icon {
-      font-size: 3.5rem;
-      line-height: 1;
-      margin-bottom: 12px;
-      margin-top: -36px;
-      display: block;
-    }
+    .page-icon { font-size: 3.5rem; line-height: 1; margin-bottom: 12px; margin-top: -36px; display: block; }
 
     .page-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.5px;
-      line-height: 1.15;
-      margin-bottom: 4px;
+      font-size: 2.2rem; font-weight: 700; color: var(--text);
+      letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 4px;
     }
 
     .page-meta { color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 32px; }
@@ -82,39 +66,18 @@
     /* Stats */
     .stats-row { display: flex; gap: 24px; margin-bottom: 24px; }
 
-    .stat-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-    }
+    .stat-item { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-secondary); }
 
-    .stat-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--border-hover);
-      flex-shrink: 0;
-    }
+    .stat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-hover); flex-shrink: 0; }
     .stat-dot.active { background: var(--accent); }
     .stat-dot.done   { background: var(--check-done); }
     .stat-count { font-weight: 600; color: var(--text); }
 
     .progress-row { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
 
-    .progress-bar {
-      flex: 1; height: 3px;
-      background: var(--border);
-      border-radius: 99px;
-      overflow: hidden;
-    }
+    .progress-bar { flex: 1; height: 3px; background: var(--border); border-radius: 99px; overflow: hidden; }
 
-    .progress-fill {
-      height: 100%;
-      background: var(--check-done);
-      border-radius: 99px;
-      transition: width 0.35s ease;
-    }
+    .progress-fill { height: 100%; background: var(--check-done); border-radius: 99px; transition: width 0.35s ease; }
 
     .progress-pct { font-size: 0.78rem; color: var(--text-secondary); min-width: 32px; text-align: right; }
 
@@ -122,59 +85,51 @@
     .view-toggle { display: flex; gap: 4px; margin-bottom: 16px; }
 
     .view-btn {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      padding: 5px 12px;
-      font-family: inherit;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.12s;
+      display: flex; align-items: center; gap: 5px;
+      background: none; border: 1px solid var(--border); border-radius: 5px;
+      padding: 5px 12px; font-family: inherit; font-size: 0.8rem; font-weight: 500;
+      color: var(--text-secondary); cursor: pointer; transition: all 0.12s;
     }
     .view-btn:hover:not(.active) { background: var(--hover-bg); color: var(--text); border-color: var(--border-hover); }
     .view-btn.active { background: var(--text); color: #fff; border-color: var(--text); }
 
     /* Filters */
-    .filters {
-      display: flex;
-      gap: 2px;
-      margin-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
+    .filters { display: flex; gap: 2px; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
 
     .filter-btn {
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      padding: 8px 12px 9px;
-      color: var(--text-secondary);
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: color 0.15s, border-color 0.15s;
+      background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px;
+      padding: 8px 12px 9px; color: var(--text-secondary); font-family: inherit;
+      font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: color 0.15s, border-color 0.15s;
     }
     .filter-btn.active { color: var(--text); border-bottom-color: var(--text); }
     .filter-btn:hover:not(.active) { color: var(--text); }
+
+    /* Filter chips row (priority + tags) */
+    .filter-chips-row {
+      display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;
+    }
+
+    .filter-chip {
+      display: inline-flex; align-items: center; gap: 3px;
+      border: 1px solid var(--border); border-radius: 4px; padding: 3px 9px;
+      font-family: inherit; font-size: 0.75rem; font-weight: 500;
+      color: var(--text-secondary); background: none; cursor: pointer; transition: all 0.12s;
+      white-space: nowrap;
+    }
+    .filter-chip:hover { background: var(--hover-bg); border-color: var(--border-hover); color: var(--text); }
+    .filter-chip.fc-high.active   { color: var(--danger); background: var(--danger-light); border-color: var(--danger); }
+    .filter-chip.fc-medium.active { color: var(--orange); background: var(--orange-light); border-color: var(--orange); }
+    .filter-chip.fc-low.active    { color: var(--green);  background: var(--green-light);  border-color: var(--green); }
+    .filter-chip.fc-tag.active    { color: var(--accent); background: var(--accent-light); border-color: var(--accent); }
 
     /* Task list */
     .task-list { display: flex; flex-direction: column; margin-top: 4px; }
 
     .task-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 5px 10px;
-      border-radius: 4px;
+      display: flex; align-items: center; gap: 6px;
+      padding: 5px 10px; border-radius: 4px;
       transition: background 0.12s, box-shadow 0.12s;
-      animation: fadeSlide 0.18s ease;
-      position: relative;
+      animation: fadeSlide 0.18s ease; position: relative;
     }
     .task-item:hover { background: var(--hover-bg); }
     .task-item.done  { opacity: 0.7; }
@@ -183,40 +138,22 @@
 
     /* Drag handle */
     .drag-handle {
-      flex-shrink: 0;
-      width: 10px;
-      height: 16px;
-      fill: var(--text-placeholder);
-      cursor: grab;
-      opacity: 0;
-      transition: opacity 0.12s;
-      margin-right: -2px;
-      align-self: center;
+      flex-shrink: 0; width: 10px; height: 16px;
+      fill: var(--text-placeholder); cursor: grab; opacity: 0;
+      transition: opacity 0.12s; margin-right: -2px; align-self: center;
     }
     .task-item:hover .drag-handle { opacity: 1; }
     .drag-handle:active { cursor: grabbing; }
 
-    /* Drag-and-drop states */
+    /* DnD states */
     .task-item.dragging { opacity: 0.35; animation: none !important; }
-
     .task-item.drag-above::before {
-      content: '';
-      position: absolute;
-      top: -1px; left: 6px; right: 6px;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 1px;
-      pointer-events: none;
+      content: ''; position: absolute; top: -1px; left: 6px; right: 6px;
+      height: 2px; background: var(--accent); border-radius: 1px; pointer-events: none;
     }
-
     .task-item.drag-below::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 6px; right: 6px;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 1px;
-      pointer-events: none;
+      content: ''; position: absolute; bottom: -1px; left: 6px; right: 6px;
+      height: 2px; background: var(--accent); border-radius: 1px; pointer-events: none;
     }
 
     @keyframes fadeSlide {
@@ -228,24 +165,16 @@
     .check-wrap input[type="checkbox"] { display: none; }
 
     .check-wrap label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px; height: 18px;
-      border-radius: 3px;
-      border: 1.5px solid var(--border-hover);
-      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 3px;
+      border: 1.5px solid var(--border-hover); cursor: pointer;
       transition: border-color 0.12s, background 0.12s;
     }
 
     .check-wrap label::after {
-      content: '';
-      display: block;
-      width: 10px; height: 7px;
-      border-left: 2px solid transparent;
-      border-bottom: 2px solid transparent;
-      transform: rotate(-45deg) translate(1px, -1px);
-      transition: border-color 0.12s;
+      content: ''; display: block; width: 10px; height: 7px;
+      border-left: 2px solid transparent; border-bottom: 2px solid transparent;
+      transform: rotate(-45deg) translate(1px, -1px); transition: border-color 0.12s;
     }
 
     .check-wrap input:checked + label { background: var(--check-done); border-color: var(--check-done); }
@@ -253,48 +182,59 @@
     .check-wrap label:hover { border-color: var(--text-secondary); }
 
     .task-text {
-      flex: 1;
-      font-size: 0.93rem;
-      line-height: 1.55;
-      color: var(--text);
-      word-break: break-word;
-      transition: color 0.15s;
-      cursor: default;
-      user-select: none;
+      flex: 1; font-size: 0.93rem; line-height: 1.55; color: var(--text);
+      word-break: break-word; transition: color 0.15s; cursor: default; user-select: none;
     }
     .task-item.done .task-text { text-decoration: line-through; color: var(--done-text); }
 
-    /* Inline edit input */
+    /* Inline edit */
     .task-edit-input {
-      flex: 1;
-      border: none;
-      border-bottom: 1.5px solid var(--accent);
-      outline: none;
-      background: transparent;
-      font-family: inherit;
-      font-size: 0.93rem;
-      color: var(--text);
-      caret-color: var(--accent);
-      padding: 0 0 1px;
-      min-width: 0;
+      flex: 1; border: none; border-bottom: 1.5px solid var(--accent); outline: none;
+      background: transparent; font-family: inherit; font-size: 0.93rem; color: var(--text);
+      caret-color: var(--accent); padding: 0 0 1px; min-width: 0;
     }
+
+    /* Tag pills */
+    .tag-pill {
+      display: inline-flex; align-items: center; gap: 2px;
+      background: var(--hover-bg); border: 1px solid var(--border); border-radius: 3px;
+      padding: 1px 6px; font-size: 0.72rem; color: var(--text-secondary);
+      cursor: pointer; white-space: nowrap; flex-shrink: 0;
+      transition: border-color 0.12s, color 0.12s, background 0.12s; user-select: none;
+    }
+    .tag-pill:hover { border-color: var(--border-hover); color: var(--text); background: var(--border); }
+
+    .tag-add-btn {
+      flex-shrink: 0; background: none; border: none; color: var(--text-placeholder);
+      font-size: 0.78rem; font-weight: 600; cursor: pointer; padding: 1px 4px;
+      border-radius: 3px; opacity: 0; transition: opacity 0.12s, background 0.12s, color 0.12s;
+      line-height: 1.4;
+    }
+    .task-item:hover .tag-add-btn { opacity: 1; }
+    .tag-add-btn:hover { color: var(--text); background: var(--hover-bg); opacity: 1; }
+
+    /* Priority badge */
+    .priority-btn {
+      flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; background: none; border: none; border-radius: 3px;
+      font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: opacity 0.12s, background 0.12s;
+      line-height: 1;
+    }
+    .priority-btn.prio-none { color: var(--text-placeholder); opacity: 0; }
+    .task-item:hover .priority-btn.prio-none { opacity: 1; }
+    .priority-btn.prio-none:hover { background: var(--hover-bg); opacity: 1; }
+    .priority-btn.prio-high   { color: var(--danger); background: var(--danger-light); }
+    .priority-btn.prio-medium { color: var(--orange); background: var(--orange-light); }
+    .priority-btn.prio-low    { color: var(--green);  background: var(--green-light);  }
+    .priority-btn.prio-high:hover, .priority-btn.prio-medium:hover,
+    .priority-btn.prio-low:hover  { filter: brightness(0.92); }
 
     /* Deadline button */
     .deadline-btn {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      background: none;
-      border: none;
-      border-radius: 3px;
-      padding: 2px 6px;
-      font-family: inherit;
-      font-size: 0.75rem;
-      line-height: 1.4;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: opacity 0.12s, background 0.12s, color 0.12s;
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: 3px;
+      background: none; border: none; border-radius: 3px; padding: 2px 6px;
+      font-family: inherit; font-size: 0.75rem; line-height: 1.4;
+      cursor: pointer; white-space: nowrap; transition: opacity 0.12s, background 0.12s, color 0.12s;
     }
     .deadline-btn.no-date { color: var(--text-placeholder); opacity: 0; }
     .task-item:hover .deadline-btn.no-date { opacity: 1; }
@@ -308,55 +248,30 @@
 
     /* Delete */
     .del-btn {
-      flex-shrink: 0;
-      background: none;
-      border: none;
-      color: var(--text-placeholder);
-      font-size: 0.85rem;
-      cursor: pointer;
-      padding: 2px 4px;
-      border-radius: 4px;
-      opacity: 0;
-      transition: opacity 0.12s, color 0.12s, background 0.12s;
-      line-height: 1;
+      flex-shrink: 0; background: none; border: none; color: var(--text-placeholder);
+      font-size: 0.85rem; cursor: pointer; padding: 2px 4px; border-radius: 4px;
+      opacity: 0; transition: opacity 0.12s, color 0.12s, background 0.12s; line-height: 1;
     }
     .task-item:hover .del-btn { opacity: 1; }
     .del-btn:hover { color: var(--danger); background: var(--danger-light); }
 
     /* Add row */
     .add-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 10px;
-      border-radius: 6px;
-      margin-bottom: 4px;
-      cursor: text;
-      transition: background 0.15s;
+      display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+      border-radius: 6px; margin-bottom: 4px; cursor: text; transition: background 0.15s;
     }
     .add-row:hover { background: var(--hover-bg); }
 
     .add-icon {
-      width: 18px; height: 18px;
-      border-radius: 3px;
+      width: 18px; height: 18px; border-radius: 3px;
       border: 1.5px dashed var(--text-placeholder);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--text-placeholder);
-      font-size: 14px;
-      line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--text-placeholder); font-size: 14px; line-height: 1;
     }
 
     .add-row input {
-      flex: 1;
-      border: none; outline: none;
-      background: transparent;
-      font-family: inherit;
-      font-size: 0.93rem;
-      color: var(--text);
-      caret-color: var(--accent);
+      flex: 1; border: none; outline: none; background: transparent;
+      font-family: inherit; font-size: 0.93rem; color: var(--text); caret-color: var(--accent);
     }
     .add-row input::placeholder { color: var(--text-placeholder); }
 
@@ -365,47 +280,81 @@
     .empty p { font-size: 0.85rem; }
 
     .clear-btn {
-      width: 100%;
-      background: none; border: none;
-      padding: 10px;
-      color: var(--text-placeholder);
-      font-family: inherit;
-      font-size: 0.8rem;
-      cursor: pointer;
-      text-align: left;
-      border-radius: 4px;
-      margin-top: 16px;
+      width: 100%; background: none; border: none; padding: 10px;
+      color: var(--text-placeholder); font-family: inherit; font-size: 0.8rem;
+      cursor: pointer; text-align: left; border-radius: 4px; margin-top: 16px;
       transition: color 0.12s, background 0.12s;
     }
     .clear-btn:hover { color: var(--danger); background: var(--danger-light); }
     .clear-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
 
+    /* ── Priority picker popup ── */
+    .prio-popup {
+      position: fixed; z-index: 9999; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+      padding: 4px; min-width: 162px; font-family: 'Inter', sans-serif; user-select: none;
+    }
+
+    .prio-option {
+      display: flex; align-items: center; gap: 8px; padding: 6px 10px;
+      font-size: 0.82rem; border-radius: 5px; cursor: pointer;
+      color: var(--text-secondary); transition: background 0.1s, color 0.1s;
+    }
+    .prio-option:hover { background: var(--hover-bg); }
+    .prio-option.opt-high   { color: var(--danger); }
+    .prio-option.opt-medium { color: var(--orange); }
+    .prio-option.opt-low    { color: var(--green);  }
+    .prio-option.opt-none   { color: var(--text-placeholder); }
+    .prio-option.selected   { font-weight: 600; background: var(--hover-bg); }
+
+    /* ── Tag picker popup ── */
+    .tag-popup {
+      position: fixed; z-index: 9999; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+      width: 224px; font-family: 'Inter', sans-serif; overflow: hidden; user-select: none;
+    }
+
+    .tag-search-wrap { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .tag-search-wrap input {
+      width: 100%; border: none; outline: none; background: transparent;
+      font-family: inherit; font-size: 0.82rem; color: var(--text); caret-color: var(--accent);
+    }
+    .tag-search-wrap input::placeholder { color: var(--text-placeholder); }
+
+    .tag-options { max-height: 176px; overflow-y: auto; padding: 4px; }
+
+    .tag-option {
+      display: flex; align-items: center; gap: 6px; padding: 5px 8px;
+      font-size: 0.82rem; border-radius: 4px; cursor: pointer; color: var(--text);
+      transition: background 0.1s;
+    }
+    .tag-option:hover { background: var(--hover-bg); }
+    .tag-option.sel { color: var(--accent); font-weight: 500; }
+
+    .tag-opt-check { width: 14px; font-size: 0.7rem; color: var(--accent); flex-shrink: 0; text-align: center; }
+
+    .tag-popup-footer {
+      padding: 6px 12px; font-size: 0.72rem; color: var(--text-secondary);
+      border-top: 1px solid var(--border); background: var(--hover-bg); min-height: 26px;
+    }
+
     /* ── Deadline date-picker popup ── */
     .cal-popup {
-      position: fixed;
-      z-index: 9999;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      position: fixed; z-index: 9999; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 8px;
       box-shadow: 0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
-      padding: 14px;
-      width: 256px;
-      font-family: 'Inter', sans-serif;
-      user-select: none;
+      padding: 14px; width: 256px; font-family: 'Inter', sans-serif; user-select: none;
     }
 
     .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 
     .cal-nav {
-      background: none; border: none;
-      cursor: pointer;
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      width: 28px; height: 28px;
+      background: none; border: none; cursor: pointer; color: var(--text-secondary);
+      font-size: 1.1rem; width: 28px; height: 28px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 4px;
-      transition: background 0.12s, color 0.12s;
-      flex-shrink: 0;
+      border-radius: 4px; transition: background 0.12s, color 0.12s; flex-shrink: 0;
     }
     .cal-nav:hover { background: var(--hover-bg); color: var(--text); }
     .cal-month-label { font-size: .88rem; font-weight: 600; color: var(--text); }
@@ -413,128 +362,77 @@
     .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; }
 
     .cal-day-name {
-      text-align: center;
-      font-size: .68rem;
-      color: var(--text-placeholder);
-      padding: 4px 0 6px;
-      font-weight: 500;
+      text-align: center; font-size: .68rem; color: var(--text-placeholder);
+      padding: 4px 0 6px; font-weight: 500;
     }
 
     .cal-cell {
-      text-align: center;
-      font-size: .8rem;
-      height: 30px;
+      text-align: center; font-size: .8rem; height: 30px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 4px;
-      cursor: pointer;
-      color: var(--text);
-      transition: background 0.1s, color 0.1s;
+      border-radius: 4px; cursor: pointer; color: var(--text); transition: background 0.1s, color 0.1s;
     }
     .cal-cell:hover:not(.cal-other):not(.cal-selected) { background: var(--hover-bg); }
-    .cal-cell.cal-other  { color: var(--text-placeholder); cursor: default; }
+    .cal-cell.cal-other { color: var(--text-placeholder); cursor: default; }
     .cal-cell.cal-other:hover { background: none; }
     .cal-cell.cal-today:not(.cal-selected) { background: var(--accent-light); color: var(--accent); font-weight: 600; }
     .cal-cell.cal-selected { background: var(--text) !important; color: #fff !important; font-weight: 600; }
 
     .cal-footer {
-      margin-top: 10px;
-      border-top: 1px solid var(--border);
-      padding-top: 8px;
-      display: flex; align-items: center; justify-content: space-between;
-      min-height: 28px;
+      margin-top: 10px; border-top: 1px solid var(--border); padding-top: 8px;
+      display: flex; align-items: center; justify-content: space-between; min-height: 28px;
     }
     .cal-footer-hint { font-size: .72rem; color: var(--text-placeholder); }
 
     .cal-clear-btn {
-      background: none; border: none;
-      font-family: inherit;
-      font-size: .78rem;
-      color: var(--text-secondary);
-      cursor: pointer;
-      padding: 3px 8px;
-      border-radius: 4px;
+      background: none; border: none; font-family: inherit; font-size: .78rem;
+      color: var(--text-secondary); cursor: pointer; padding: 3px 8px; border-radius: 4px;
       transition: background 0.12s, color 0.12s;
     }
     .cal-clear-btn:hover { background: var(--danger-light); color: var(--danger); }
 
     /* ── Planner view ── */
-    .pl-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 14px;
-    }
+    .pl-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
 
     .pl-nav {
-      background: none; border: none;
-      cursor: pointer;
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-      width: 32px; height: 32px;
+      background: none; border: none; cursor: pointer; color: var(--text-secondary);
+      font-size: 1.2rem; width: 32px; height: 32px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 4px;
-      transition: background 0.12s, color 0.12s;
+      border-radius: 4px; transition: background 0.12s, color 0.12s;
     }
     .pl-nav:hover { background: var(--hover-bg); color: var(--text); }
-
     .pl-month-label { font-size: 1rem; font-weight: 600; color: var(--text); }
 
     .pl-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: 6px; overflow: hidden;
     }
 
     .pl-day-name {
-      background: var(--bg);
-      text-align: center;
-      font-size: .68rem;
-      color: var(--text-placeholder);
-      padding: 6px 4px;
-      font-weight: 500;
+      background: var(--bg); text-align: center; font-size: .68rem;
+      color: var(--text-placeholder); padding: 6px 4px; font-weight: 500;
     }
 
     .pl-cell {
-      background: var(--bg);
-      min-height: 76px;
-      padding: 6px;
-      cursor: pointer;
-      transition: background 0.1s;
-      display: flex;
-      flex-direction: column;
+      background: var(--bg); min-height: 76px; padding: 6px; cursor: pointer;
+      transition: background 0.1s; display: flex; flex-direction: column;
     }
     .pl-cell:hover:not(.pl-other) { background: var(--hover-bg); }
     .pl-other { cursor: default; }
     .pl-other .pl-num { color: var(--text-placeholder); }
 
     .pl-num {
-      font-size: .78rem;
-      font-weight: 500;
-      color: var(--text);
+      font-size: .78rem; font-weight: 500; color: var(--text);
       width: 22px; height: 22px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 50%;
-      flex-shrink: 0;
-      line-height: 1;
+      border-radius: 50%; flex-shrink: 0; line-height: 1;
     }
     .pl-today .pl-num { background: var(--accent); color: #fff; }
     .pl-selected { background: var(--accent-light) !important; }
 
-    .pl-dots {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2px;
-      margin-top: 5px;
-      align-items: center;
-    }
+    .pl-dots { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 5px; align-items: center; }
 
-    .pl-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .pl-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
     .pl-dot.overdue   { background: var(--danger); }
     .pl-dot.today-due { background: var(--orange); }
     .pl-dot.future    { background: var(--accent); }
@@ -542,30 +440,17 @@
     .pl-more { font-size: .6rem; color: var(--text-secondary); line-height: 1; }
 
     /* Day panel */
-    .pl-panel {
-      margin-top: 12px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      animation: fadeSlide 0.18s ease;
-    }
+    .pl-panel { margin-top: 12px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; animation: fadeSlide 0.18s ease; }
 
     .pl-panel-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
-      background: var(--hover-bg);
+      padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--hover-bg);
     }
-
     .pl-panel-title { font-size: .85rem; font-weight: 600; color: var(--text); }
 
     .pl-panel-close {
-      background: none; border: none;
-      cursor: pointer;
-      color: var(--text-placeholder);
-      font-size: .75rem;
-      padding: 2px 5px;
-      border-radius: 3px;
+      background: none; border: none; cursor: pointer; color: var(--text-placeholder);
+      font-size: .75rem; padding: 2px 5px; border-radius: 3px;
       transition: color 0.12s, background 0.12s;
     }
     .pl-panel-close:hover { color: var(--text); background: var(--border); }
@@ -574,16 +459,11 @@
 
     .pl-panel-add {
       display: flex; align-items: center; gap: 8px;
-      padding: 6px 10px 8px;
-      border-top: 1px solid var(--border);
+      padding: 8px 10px 10px; border-top: 1px solid var(--border);
     }
     .pl-panel-add input {
-      flex: 1; border: none; outline: none;
-      background: transparent;
-      font-family: inherit;
-      font-size: .85rem;
-      color: var(--text);
-      caret-color: var(--accent);
+      flex: 1; border: none; outline: none; background: transparent;
+      font-family: inherit; font-size: .85rem; color: var(--text); caret-color: var(--accent);
     }
     .pl-panel-add input::placeholder { color: var(--text-placeholder); }
 
@@ -610,26 +490,14 @@
   <div class="divider"></div>
 
   <div class="content">
-
     <div class="stats-row">
-      <div class="stat-item">
-        <div class="stat-dot"></div>
-        Всего: <span class="stat-count" id="stat-total">0</span>
-      </div>
-      <div class="stat-item">
-        <div class="stat-dot active"></div>
-        Активных: <span class="stat-count" id="stat-active">0</span>
-      </div>
-      <div class="stat-item">
-        <div class="stat-dot done"></div>
-        Выполнено: <span class="stat-count" id="stat-done">0</span>
-      </div>
+      <div class="stat-item"><div class="stat-dot"></div>Всего: <span class="stat-count" id="stat-total">0</span></div>
+      <div class="stat-item"><div class="stat-dot active"></div>Активных: <span class="stat-count" id="stat-active">0</span></div>
+      <div class="stat-item"><div class="stat-dot done"></div>Выполнено: <span class="stat-count" id="stat-done">0</span></div>
     </div>
 
     <div class="progress-row">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
-      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
       <span class="progress-pct" id="progress-pct">0%</span>
     </div>
 
@@ -645,6 +513,7 @@
         <button class="filter-btn" data-filter="active">Активные</button>
         <button class="filter-btn" data-filter="done">Выполненные</button>
       </div>
+      <div class="filter-chips-row" id="filter-chips-row" style="display:none"></div>
       <div class="task-list" id="task-list"></div>
       <form id="add-form">
         <div class="add-row" id="add-row">
@@ -657,18 +526,21 @@
 
     <!-- Planner view -->
     <div id="planner-section" style="display:none"></div>
-
   </div>
 </div>
 
 <script>
   const STORAGE_KEY = 'todo_tasks_notion_v1';
   let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  let filter = 'all';
-  let currentView = 'list';
+  let filter         = 'all';
+  let filterPriority = null;
+  let filterTag      = null;
+  let currentView    = 'list';
 
-  // Date-picker popup state
+  // Popup state
   let calEl = null, calTaskId = null, calYear = 0, calMonth = 0;
+  let prioEl = null, prioTaskId = null;
+  let tagEl  = null, tagTaskId  = null;
 
   // Drag state
   let dragId = null;
@@ -677,19 +549,20 @@
   const _now = new Date();
   let plYear = _now.getFullYear(), plMonth = _now.getMonth(), plSelDate = null;
 
-  const listEl        = document.getElementById('task-list');
-  const inputEl       = document.getElementById('task-input');
-  const formEl        = document.getElementById('add-form');
-  const addRow        = document.getElementById('add-row');
-  const clearBtn      = document.getElementById('clear-btn');
-  const statTotal     = document.getElementById('stat-total');
-  const statActive    = document.getElementById('stat-active');
-  const statDone      = document.getElementById('stat-done');
-  const progressFill  = document.getElementById('progress-fill');
-  const progressPct   = document.getElementById('progress-pct');
-  const pageMeta      = document.getElementById('page-meta');
-  const listSection   = document.getElementById('list-section');
+  const listEl         = document.getElementById('task-list');
+  const inputEl        = document.getElementById('task-input');
+  const formEl         = document.getElementById('add-form');
+  const addRow         = document.getElementById('add-row');
+  const clearBtn       = document.getElementById('clear-btn');
+  const statTotal      = document.getElementById('stat-total');
+  const statActive     = document.getElementById('stat-active');
+  const statDone       = document.getElementById('stat-done');
+  const progressFill   = document.getElementById('progress-fill');
+  const progressPct    = document.getElementById('progress-pct');
+  const pageMeta       = document.getElementById('page-meta');
+  const listSection    = document.getElementById('list-section');
   const plannerSection = document.getElementById('planner-section');
+  const chipsRow       = document.getElementById('filter-chips-row');
 
   function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks)); }
 
@@ -698,7 +571,6 @@
   function toISO(d) {
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
-
   function todayISO() { return toISO(new Date()); }
 
   function deadlineStatus(ds) {
@@ -715,6 +587,20 @@
     return y === new Date().getFullYear() ? `${d} ${months[m-1]}` : `${d} ${months[m-1]} ${y}`;
   }
 
+  // ── Tag / priority helpers ────────────────────────────────────
+
+  function getAllTags() {
+    const set = new Set();
+    tasks.forEach(t => (t.tags || []).forEach(g => set.add(g)));
+    return [...set].sort();
+  }
+
+  const PRIO = {
+    high:   { icon: '↑', label: '↑ Высокий',  cls: 'opt-high'   },
+    medium: { icon: '→', label: '→ Средний',   cls: 'opt-medium' },
+    low:    { icon: '↓', label: '↓ Низкий',    cls: 'opt-low'    },
+  };
+
   // ── Stats ─────────────────────────────────────────────────────
 
   function updateMeta() {
@@ -722,8 +608,7 @@
   }
 
   function updateStats() {
-    const total = tasks.length;
-    const done  = tasks.filter(t => t.done).length;
+    const total = tasks.length, done = tasks.filter(t => t.done).length;
     const pct   = total ? Math.round(done / total * 100) : 0;
     statTotal.textContent  = total;
     statActive.textContent = total - done;
@@ -733,16 +618,61 @@
     clearBtn.disabled = done === 0;
   }
 
+  // ── Filter chips row ──────────────────────────────────────────
+
+  function renderFilterChips() {
+    const allTags = getAllTags();
+    const hasPrio = tasks.some(t => t.priority);
+    let html = '';
+
+    if (hasPrio) {
+      ['high','medium','low'].forEach(p => {
+        const active = filterPriority === p ? ' active' : '';
+        html += `<button class="filter-chip fc-${p}${active}" data-prio="${p}">${PRIO[p].label}</button>`;
+      });
+    }
+
+    allTags.forEach(tag => {
+      const active = filterTag === tag ? ' active' : '';
+      html += `<button class="filter-chip fc-tag${active}" data-tag="${escHtml(tag)}"># ${escHtml(tag)}</button>`;
+    });
+
+    if (html) {
+      chipsRow.innerHTML = html;
+      chipsRow.style.display = 'flex';
+
+      chipsRow.querySelectorAll('[data-prio]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterPriority = filterPriority === btn.dataset.prio ? null : btn.dataset.prio;
+          render();
+        });
+      });
+
+      chipsRow.querySelectorAll('[data-tag]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterTag = filterTag === btn.dataset.tag ? null : btn.dataset.tag;
+          render();
+        });
+      });
+    } else {
+      chipsRow.innerHTML = '';
+      chipsRow.style.display = 'none';
+    }
+  }
+
   // ── List render ───────────────────────────────────────────────
 
   function getFiltered() {
-    if (filter === 'active') return tasks.filter(t => !t.done);
-    if (filter === 'done')   return tasks.filter(t =>  t.done);
-    return tasks;
+    let r = tasks;
+    if (filter === 'active') r = r.filter(t => !t.done);
+    if (filter === 'done')   r = r.filter(t =>  t.done);
+    if (filterPriority)      r = r.filter(t => t.priority === filterPriority);
+    if (filterTag)           r = r.filter(t => (t.tags || []).includes(filterTag));
+    return r;
   }
 
   function escHtml(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
   const DRAG_HANDLE_SVG = `<svg class="drag-handle" viewBox="0 0 8 14" xmlns="http://www.w3.org/2000/svg">
@@ -752,7 +682,11 @@
   </svg>`;
 
   function buildTaskItem(task, ctx) {
-    const status = deadlineStatus(task.deadline);
+    const status   = deadlineStatus(task.deadline);
+    const prio     = task.priority || null;
+    const tags     = task.tags || [];
+    const isListCtx = ctx === 'list';
+
     let cls = 'task-item';
     if (task.done)                            cls += ' done';
     if (!task.done && status === 'overdue')   cls += ' is-overdue';
@@ -760,22 +694,28 @@
 
     const dlLabel = task.deadline ? `📅 ${fmtDate(task.deadline)}` : '📅';
     const dlCls   = task.deadline ? (status || 'future') : 'no-date';
+    const prioIcon = prio ? PRIO[prio].icon : '○';
+    const prioCls  = prio ? `prio-${prio}` : 'prio-none';
+
+    const tagPills = tags.map(tag =>
+      `<span class="tag-pill" data-tag="${escHtml(tag)}"># ${escHtml(tag)}</span>`
+    ).join('');
 
     const div = document.createElement('div');
     div.className = cls;
     div.dataset.id = task.id;
 
-    const showDeadlineBtn = ctx === 'list';
-    const showDragHandle  = ctx === 'list';
-
     div.innerHTML = `
-      ${showDragHandle ? DRAG_HANDLE_SVG : ''}
+      ${isListCtx ? DRAG_HANDLE_SVG : ''}
       <div class="check-wrap">
         <input type="checkbox" id="cb-${ctx}-${task.id}" ${task.done ? 'checked' : ''} />
         <label for="cb-${ctx}-${task.id}"></label>
       </div>
       <span class="task-text" title="Двойной клик — редактировать">${escHtml(task.text)}</span>
-      ${showDeadlineBtn ? `<button class="deadline-btn ${dlCls}" title="Установить дедлайн">${dlLabel}</button>` : ''}
+      ${tagPills}
+      <button class="tag-add-btn" title="Добавить тег">#</button>
+      <button class="priority-btn ${prioCls}" title="Приоритет">${prioIcon}</button>
+      ${isListCtx ? `<button class="deadline-btn ${dlCls}" title="Установить дедлайн">${dlLabel}</button>` : ''}
       <button class="del-btn" title="Удалить">✕</button>
     `;
 
@@ -785,21 +725,34 @@
       e.stopPropagation();
       startEdit(task.id, e.currentTarget, ctx);
     });
+    div.querySelector('.priority-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      openPrioPicker(task.id, e.currentTarget);
+    });
+    div.querySelector('.tag-add-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      openTagPicker(task.id, e.currentTarget);
+    });
+    div.querySelectorAll('.tag-pill').forEach(pill => {
+      pill.addEventListener('click', e => {
+        e.stopPropagation();
+        openTagPicker(task.id, e.currentTarget);
+      });
+    });
 
-    if (showDeadlineBtn) {
+    if (isListCtx) {
       div.querySelector('.deadline-btn').addEventListener('click', e => {
         e.stopPropagation();
         openCal(task.id, e.currentTarget);
       });
+      setupDrag(div, task.id);
     }
-
-    if (showDragHandle) setupDrag(div, task.id);
 
     return div;
   }
 
   function render() {
-    closeCal();
+    closeAllPopups();
     const visible = getFiltered();
     listEl.innerHTML = '';
 
@@ -815,6 +768,7 @@
       visible.forEach(task => listEl.appendChild(buildTaskItem(task, 'list')));
     }
     updateStats();
+    renderFilterChips();
   }
 
   // ── CRUD ──────────────────────────────────────────────────────
@@ -827,7 +781,7 @@
   function add(text, deadline = null) {
     text = text.trim();
     if (!text) return;
-    tasks.unshift({ id: Date.now(), text, done: false, deadline });
+    tasks.unshift({ id: Date.now(), text, done: false, deadline, priority: null, tags: [] });
     save();
     rerender();
   }
@@ -848,37 +802,40 @@
     if (t) { t.deadline = ds || null; save(); rerender(); }
   }
 
+  function setPriority(id, priority) {
+    const t = tasks.find(t => t.id === id);
+    if (t) { t.priority = priority || null; save(); rerender(); }
+  }
+
+  function toggleTag(id, tag) {
+    const t = tasks.find(t => t.id === id);
+    if (!t) return;
+    if (!t.tags) t.tags = [];
+    const idx = t.tags.indexOf(tag);
+    if (idx === -1) t.tags.push(tag);
+    else t.tags.splice(idx, 1);
+    save();
+    rerender();
+  }
+
   // ── Inline editing ────────────────────────────────────────────
 
   function startEdit(id, spanEl, ctx) {
     const task = tasks.find(t => t.id === id);
     if (!task) return;
-
     const inp = document.createElement('input');
-    inp.type = 'text';
-    inp.className = 'task-edit-input';
-    inp.value = task.text;
-    inp.maxLength = 200;
+    inp.type = 'text'; inp.className = 'task-edit-input';
+    inp.value = task.text; inp.maxLength = 200;
     spanEl.replaceWith(inp);
-    inp.focus();
-    inp.select();
-
+    inp.focus(); inp.select();
     let done = false;
-
     function commit() {
-      if (done) return;
-      done = true;
+      if (done) return; done = true;
       const v = inp.value.trim();
       if (v && v !== task.text) { task.text = v; save(); }
       ctx === 'planner' ? renderPlanner() : render();
     }
-
-    function cancel() {
-      if (done) return;
-      done = true;
-      ctx === 'planner' ? renderPlanner() : render();
-    }
-
+    function cancel() { if (done) return; done = true; ctx === 'planner' ? renderPlanner() : render(); }
     inp.addEventListener('blur', commit);
     inp.addEventListener('keydown', e => {
       if (e.key === 'Enter')  { e.preventDefault(); commit(); }
@@ -886,12 +843,10 @@
     });
   }
 
-  // ── Drag and drop ────────────────────────────────────────────
+  // ── Drag and drop ─────────────────────────────────────────────
 
   function clearDropIndicators() {
-    listEl.querySelectorAll('.drag-above, .drag-below').forEach(el => {
-      el.classList.remove('drag-above', 'drag-below');
-    });
+    listEl.querySelectorAll('.drag-above, .drag-below').forEach(el => el.classList.remove('drag-above','drag-below'));
   }
 
   function reorderTask(fromId, toId, insertBefore) {
@@ -901,47 +856,33 @@
     let toIdx = tasks.findIndex(t => t.id === toId);
     if (toIdx === -1) tasks.unshift(fromTask);
     else tasks.splice(insertBefore ? toIdx : toIdx + 1, 0, fromTask);
-    save();
-    render();
+    save(); render();
   }
 
   function setupDrag(div, taskId) {
     const handle = div.querySelector('.drag-handle');
-
     handle.addEventListener('mousedown', () => { div.draggable = true; });
-
     div.addEventListener('dragstart', e => {
       dragId = taskId;
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.setData('text/plain', String(taskId));
       requestAnimationFrame(() => div.classList.add('dragging'));
     });
-
     div.addEventListener('dragend', () => {
-      div.draggable = false;
-      div.classList.remove('dragging');
-      clearDropIndicators();
-      dragId = null;
+      div.draggable = false; div.classList.remove('dragging');
+      clearDropIndicators(); dragId = null;
     });
-
     div.addEventListener('dragover', e => {
       if (dragId === null || dragId === taskId) return;
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'move';
+      e.preventDefault(); e.dataTransfer.dropEffect = 'move';
       const above = e.clientY < div.getBoundingClientRect().top + div.offsetHeight / 2;
       const want  = above ? 'drag-above' : 'drag-below';
-      if (!div.classList.contains(want)) {
-        clearDropIndicators();
-        div.classList.add(want);
-      }
+      if (!div.classList.contains(want)) { clearDropIndicators(); div.classList.add(want); }
     });
-
     div.addEventListener('dragleave', e => {
-      if (!e.relatedTarget || !div.contains(e.relatedTarget)) {
-        div.classList.remove('drag-above', 'drag-below');
-      }
+      if (!e.relatedTarget || !div.contains(e.relatedTarget))
+        div.classList.remove('drag-above','drag-below');
     });
-
     div.addEventListener('drop', e => {
       e.preventDefault();
       if (dragId === null || dragId === taskId) return;
@@ -950,61 +891,180 @@
     });
   }
 
+  // ── Popup utilities ───────────────────────────────────────────
+
+  function positionPopup(el, anchor) {
+    const r = anchor.getBoundingClientRect();
+    const W = el.offsetWidth  || 200;
+    const H = el.offsetHeight || 200;
+    let left = r.left, top = r.bottom + 6;
+    if (left + W > window.innerWidth  - 8) left = window.innerWidth  - W - 8;
+    if (left < 8) left = 8;
+    if (top  + H > window.innerHeight - 8) top  = r.top - H - 6;
+    if (top  < 8) top  = 8;
+    el.style.left = left + 'px';
+    el.style.top  = top  + 'px';
+  }
+
+  function closeAllPopups() {
+    closeCal(); closePrioPicker(); closeTagPicker();
+  }
+
+  // ── Priority picker ───────────────────────────────────────────
+
+  function openPrioPicker(taskId, anchor) {
+    if (prioEl && prioTaskId === taskId) { closePrioPicker(); return; }
+    closeAllPopups();
+    prioTaskId = taskId;
+    const task = tasks.find(t => t.id === taskId);
+
+    prioEl = document.createElement('div');
+    prioEl.className = 'prio-popup';
+    prioEl.addEventListener('click', e => e.stopPropagation());
+
+    const OPTS = [
+      { v: 'high',   label: PRIO.high.label,   cls: 'opt-high'   },
+      { v: 'medium', label: PRIO.medium.label,  cls: 'opt-medium' },
+      { v: 'low',    label: PRIO.low.label,     cls: 'opt-low'    },
+      { v: null,     label: '— Убрать',         cls: 'opt-none'   },
+    ];
+
+    OPTS.forEach(o => {
+      const el = document.createElement('div');
+      el.className = `prio-option ${o.cls}${task?.priority === o.v ? ' selected' : ''}`;
+      el.textContent = o.label;
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        setPriority(prioTaskId, o.v);
+        closePrioPicker();
+      });
+      prioEl.appendChild(el);
+    });
+
+    document.body.appendChild(prioEl);
+    positionPopup(prioEl, anchor);
+  }
+
+  function closePrioPicker() {
+    if (prioEl) { prioEl.remove(); prioEl = null; }
+    prioTaskId = null;
+  }
+
+  // ── Tag picker ────────────────────────────────────────────────
+
+  function openTagPicker(taskId, anchor) {
+    if (tagEl && tagTaskId === taskId) { closeTagPicker(); return; }
+    closeAllPopups();
+    tagTaskId = taskId;
+
+    tagEl = document.createElement('div');
+    tagEl.className = 'tag-popup';
+    tagEl.addEventListener('click', e => e.stopPropagation());
+    document.body.appendChild(tagEl);
+
+    buildTagPopup();
+    positionPopup(tagEl, anchor);
+  }
+
+  function buildTagPopup() {
+    const task = tasks.find(t => t.id === tagTaskId);
+    const cur  = task?.tags || [];
+    const all  = getAllTags();
+
+    tagEl.innerHTML = `
+      <div class="tag-search-wrap">
+        <input id="tag-search-inp" placeholder="Поиск или создание тега…" autocomplete="off" />
+      </div>
+      <div class="tag-options" id="tag-options-list">
+        ${all.length ? all.map(tag => `
+          <div class="tag-option${cur.includes(tag) ? ' sel' : ''}" data-tag="${escHtml(tag)}">
+            <span class="tag-opt-check">${cur.includes(tag) ? '✓' : ''}</span>
+            <span>${escHtml(tag)}</span>
+          </div>`).join('') : '<div style="padding:12px;text-align:center;font-size:.78rem;color:var(--text-placeholder)">Введите название нового тега</div>'}
+      </div>
+      <div class="tag-popup-footer" id="tag-popup-footer"></div>
+    `;
+
+    const searchEl = tagEl.querySelector('#tag-search-inp');
+    const footer   = tagEl.querySelector('#tag-popup-footer');
+    const listEl2  = tagEl.querySelector('#tag-options-list');
+    searchEl.focus();
+
+    searchEl.addEventListener('input', () => {
+      const q = searchEl.value.toLowerCase().trim();
+      listEl2.querySelectorAll('.tag-option').forEach(el => {
+        el.style.display = !q || el.dataset.tag.toLowerCase().includes(q) ? '' : 'none';
+      });
+      const exact = all.some(t => t.toLowerCase() === q);
+      footer.textContent = q && !exact ? `Enter — создать тег "${searchEl.value.trim()}"` : '';
+    });
+
+    searchEl.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { e.preventDefault(); closeTagPicker(); return; }
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const q = searchEl.value.trim();
+        if (!q) return;
+        toggleTag(tagTaskId, q);
+        buildTagPopup();
+        const si = tagEl.querySelector('#tag-search-inp');
+        if (si) { si.focus(); si.value = ''; }
+      }
+    });
+
+    tagEl.querySelectorAll('.tag-option').forEach(el => {
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        toggleTag(tagTaskId, el.dataset.tag);
+        buildTagPopup();
+        const si = tagEl.querySelector('#tag-search-inp');
+        if (si) si.focus();
+      });
+    });
+  }
+
+  function closeTagPicker() {
+    if (tagEl) { tagEl.remove(); tagEl = null; }
+    tagTaskId = null;
+  }
+
   // ── Date-picker popup ─────────────────────────────────────────
 
   function openCal(taskId, anchorEl) {
     if (calEl && calTaskId === taskId) { closeCal(); return; }
-    closeCal();
-
+    closeAllPopups();
     calTaskId = taskId;
     const task = tasks.find(t => t.id === taskId);
-
     if (task?.deadline) {
       const [y, m] = task.deadline.split('-').map(Number);
       calYear = y; calMonth = m - 1;
-    } else {
-      const n = new Date();
-      calYear = n.getFullYear(); calMonth = n.getMonth();
-    }
+    } else { const n = new Date(); calYear = n.getFullYear(); calMonth = n.getMonth(); }
 
     calEl = document.createElement('div');
     calEl.className = 'cal-popup';
     calEl.addEventListener('click', e => e.stopPropagation());
     document.body.appendChild(calEl);
-
     buildCal();
-    positionCal(anchorEl);
+    positionPopup(calEl, anchorEl);
   }
 
   function buildCal() {
-    const task  = tasks.find(t => t.id === calTaskId);
-    const sel   = task?.deadline;
-    const today = todayISO();
-
+    const task = tasks.find(t => t.id === calTaskId);
+    const sel  = task?.deadline, today = todayISO();
     const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
     const DAYS   = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
-
-    const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
-    const firstDow    = (new Date(calYear, calMonth, 1).getDay() + 6) % 7;
-    const prevTotal   = new Date(calYear, calMonth, 0).getDate();
+    const dim    = new Date(calYear, calMonth+1, 0).getDate();
+    const fdow   = (new Date(calYear, calMonth, 1).getDay() + 6) % 7;
+    const prevD  = new Date(calYear, calMonth, 0).getDate();
 
     let cells = [];
-    for (let i = firstDow-1; i >= 0; i--) cells.push({ day: prevTotal-i, other: true });
-    for (let d = 1; d <= daysInMonth; d++) {
+    for (let i = fdow-1; i >= 0; i--) cells.push({ day: prevD-i, other: true });
+    for (let d = 1; d <= dim; d++) {
       const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
       cells.push({ day: d, ds, other: false, isToday: ds===today, isSel: ds===sel });
     }
     const fill = Math.ceil(cells.length/7)*7 - cells.length;
     for (let i = 1; i <= fill; i++) cells.push({ day: i, other: true });
-
-    const dayNames = DAYS.map(d => `<div class="cal-day-name">${d}</div>`).join('');
-    const dayCells = cells.map(c => {
-      if (c.other) return `<div class="cal-cell cal-other">${c.day}</div>`;
-      let cls = 'cal-cell';
-      if (c.isToday) cls += ' cal-today';
-      if (c.isSel)   cls += ' cal-selected';
-      return `<div class="${cls}" data-date="${c.ds}">${c.day}</div>`;
-    }).join('');
 
     calEl.innerHTML = `
       <div class="cal-header">
@@ -1012,48 +1072,39 @@
         <span class="cal-month-label">${MONTHS[calMonth]} ${calYear}</span>
         <button class="cal-nav" id="cal-next">›</button>
       </div>
-      <div class="cal-grid">${dayNames}${dayCells}</div>
+      <div class="cal-grid">
+        ${DAYS.map(d => `<div class="cal-day-name">${d}</div>`).join('')}
+        ${cells.map(c => {
+          if (c.other) return `<div class="cal-cell cal-other">${c.day}</div>`;
+          let cls = 'cal-cell';
+          if (c.isToday) cls += ' cal-today';
+          if (c.isSel)   cls += ' cal-selected';
+          return `<div class="${cls}" data-date="${c.ds}">${c.day}</div>`;
+        }).join('')}
+      </div>
       <div class="cal-footer">
-        ${sel
-          ? '<button class="cal-clear-btn">Очистить дату</button>'
-          : '<span class="cal-footer-hint">Нажмите на дату</span>'}
+        ${sel ? '<button class="cal-clear-btn">Очистить дату</button>'
+              : '<span class="cal-footer-hint">Нажмите на дату</span>'}
       </div>
     `;
 
     calEl.querySelector('#cal-prev').addEventListener('click', e => {
       e.stopPropagation();
-      if (--calMonth < 0) { calMonth = 11; calYear--; }
-      buildCal();
+      if (--calMonth < 0) { calMonth = 11; calYear--; } buildCal();
     });
     calEl.querySelector('#cal-next').addEventListener('click', e => {
       e.stopPropagation();
-      if (++calMonth > 11) { calMonth = 0; calYear++; }
-      buildCal();
+      if (++calMonth > 11) { calMonth = 0; calYear++; } buildCal();
     });
-
     calEl.querySelectorAll('.cal-cell:not(.cal-other)').forEach(el => {
       el.addEventListener('click', e => { e.stopPropagation(); setDeadline(calTaskId, el.dataset.date); closeCal(); });
     });
-
     const clrBtn = calEl.querySelector('.cal-clear-btn');
     if (clrBtn) clrBtn.addEventListener('click', e => { e.stopPropagation(); setDeadline(calTaskId, null); closeCal(); });
   }
 
-  function positionCal(anchor) {
-    const r = anchor.getBoundingClientRect();
-    const W = 256, H = 290;
-    let left = r.left, top = r.bottom + 6;
-    if (left + W > window.innerWidth  - 8) left = window.innerWidth  - W - 8;
-    if (left < 8) left = 8;
-    if (top  + H > window.innerHeight - 8) top  = r.top - H - 6;
-    if (top  < 8) top  = 8;
-    calEl.style.left = left + 'px';
-    calEl.style.top  = top  + 'px';
-  }
-
   function closeCal() {
-    if (calEl) { calEl.remove(); calEl = null; }
-    calTaskId = null;
+    if (calEl) { calEl.remove(); calEl = null; } calTaskId = null;
   }
 
   // ── Planner ───────────────────────────────────────────────────
@@ -1063,19 +1114,16 @@
     const DAYS        = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
     const today       = todayISO();
 
-    // task map: date → tasks[]
     const taskMap = {};
-    tasks.forEach(t => {
-      if (t.deadline) (taskMap[t.deadline] = taskMap[t.deadline] || []).push(t);
-    });
+    tasks.forEach(t => { if (t.deadline) (taskMap[t.deadline] = taskMap[t.deadline] || []).push(t); });
 
-    const daysInMonth = new Date(plYear, plMonth+1, 0).getDate();
-    const firstDow    = (new Date(plYear, plMonth, 1).getDay() + 6) % 7;
-    const prevTotal   = new Date(plYear, plMonth, 0).getDate();
+    const dim   = new Date(plYear, plMonth+1, 0).getDate();
+    const fdow  = (new Date(plYear, plMonth, 1).getDay() + 6) % 7;
+    const prevD = new Date(plYear, plMonth, 0).getDate();
 
     let cells = [];
-    for (let i = firstDow-1; i >= 0; i--) cells.push({ day: prevTotal-i, ds: null, other: true });
-    for (let d = 1; d <= daysInMonth; d++) {
+    for (let i = fdow-1; i >= 0; i--) cells.push({ day: prevD-i, ds: null, other: true });
+    for (let d = 1; d <= dim; d++) {
       const ds = `${plYear}-${String(plMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
       cells.push({ day: d, ds, other: false, isToday: ds===today, isSel: ds===plSelDate });
     }
@@ -1086,29 +1134,20 @@
 
     const cellsHtml = cells.map(c => {
       if (c.other) return `<div class="pl-cell pl-other"><div class="pl-num">${c.day}</div></div>`;
-
       let cls = 'pl-cell';
       if (c.isToday) cls += ' pl-today';
       if (c.isSel)   cls += ' pl-selected';
-
       const dayTasks = taskMap[c.ds] || [];
       let dotsHtml = '';
-
       if (dayTasks.length) {
-        const MAX = 5;
-        const shown = dayTasks.slice(0, MAX);
-        const more  = dayTasks.length - MAX;
+        const shown = dayTasks.slice(0, 5), more = dayTasks.length - 5;
         const dots  = shown.map(t => {
           const st = t.done ? 'done' : (deadlineStatus(t.deadline) || 'future');
           return `<span class="pl-dot ${st}"></span>`;
         }).join('');
         dotsHtml = `<div class="pl-dots">${dots}${more > 0 ? `<span class="pl-more">+${more}</span>` : ''}</div>`;
       }
-
-      return `<div class="${cls}" data-date="${c.ds}">
-        <div class="pl-num">${c.day}</div>
-        ${dotsHtml}
-      </div>`;
+      return `<div class="${cls}" data-date="${c.ds}"><div class="pl-num">${c.day}</div>${dotsHtml}</div>`;
     }).join('');
 
     plannerSection.innerHTML = `
@@ -1122,19 +1161,14 @@
     `;
 
     plannerSection.querySelector('#pl-prev').addEventListener('click', () => {
-      if (--plMonth < 0) { plMonth = 11; plYear--; }
-      renderPlanner();
+      if (--plMonth < 0) { plMonth = 11; plYear--; } renderPlanner();
     });
     plannerSection.querySelector('#pl-next').addEventListener('click', () => {
-      if (++plMonth > 11) { plMonth = 0; plYear++; }
-      renderPlanner();
+      if (++plMonth > 11) { plMonth = 0; plYear++; } renderPlanner();
     });
 
     plannerSection.querySelectorAll('.pl-cell:not(.pl-other)').forEach(el => {
-      el.addEventListener('click', () => {
-        plSelDate = el.dataset.date === plSelDate ? null : el.dataset.date;
-        renderPlanner();
-      });
+      el.addEventListener('click', () => { plSelDate = el.dataset.date; renderPlanner(); });
     });
 
     if (plSelDate) renderDayPanel();
@@ -1156,7 +1190,6 @@
     const panelDiv = document.createElement('div');
     panelDiv.className = 'pl-panel';
 
-    // Header
     const hdr = document.createElement('div');
     hdr.className = 'pl-panel-header';
     hdr.innerHTML = `
@@ -1166,7 +1199,6 @@
     hdr.querySelector('.pl-panel-close').addEventListener('click', () => { plSelDate = null; renderPlanner(); });
     panelDiv.appendChild(hdr);
 
-    // Tasks
     const tasksContainer = document.createElement('div');
     if (dayTasks.length) {
       dayTasks.forEach(task => tasksContainer.appendChild(buildTaskItem(task, 'planner')));
@@ -1175,32 +1207,34 @@
     }
     panelDiv.appendChild(tasksContainer);
 
-    // Quick-add form
     const addForm = document.createElement('form');
     addForm.className = 'pl-panel-add';
-    addForm.innerHTML = `
-      <div class="add-icon">+</div>
-      <input type="text" placeholder="Добавить задачу на этот день" maxlength="200" autocomplete="off" />
-    `;
+    addForm.innerHTML = `<div class="add-icon">+</div>
+      <input type="text" placeholder="Добавить задачу на этот день…" maxlength="200" autocomplete="off" />`;
     addForm.addEventListener('submit', e => {
       e.preventDefault();
       const text = addForm.querySelector('input').value.trim();
       if (text) {
         add(text, ds);
-        const newInp = document.querySelector('#pl-day-panel .pl-panel-add input');
-        if (newInp) newInp.focus();
+        const inp = document.querySelector('#pl-day-panel .pl-panel-add input');
+        if (inp) inp.focus();
       }
     });
     panelDiv.appendChild(addForm);
-
     panel.appendChild(panelDiv);
+
+    // Auto-focus the add input so user can immediately type
+    requestAnimationFrame(() => {
+      const inp = panel.querySelector('.pl-panel-add input');
+      if (inp) inp.focus();
+    });
   }
 
   // ── View switching ────────────────────────────────────────────
 
   document.querySelectorAll('.view-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      closeCal();
+      closeAllPopups();
       document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentView = btn.dataset.view;
@@ -1219,18 +1253,13 @@
   // ── Event listeners ───────────────────────────────────────────
 
   formEl.addEventListener('submit', e => {
-    e.preventDefault();
-    add(inputEl.value);
-    inputEl.value = '';
-    inputEl.focus();
+    e.preventDefault(); add(inputEl.value); inputEl.value = ''; inputEl.focus();
   });
 
   addRow.addEventListener('click', () => inputEl.focus());
 
   clearBtn.addEventListener('click', () => {
-    tasks = tasks.filter(t => !t.done);
-    save();
-    render();
+    tasks = tasks.filter(t => !t.done); save(); render();
   });
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1242,7 +1271,7 @@
     });
   });
 
-  document.addEventListener('click', closeCal);
+  document.addEventListener('click', closeAllPopups);
 
   // ── Init ──────────────────────────────────────────────────────
 
@@ -1252,11 +1281,11 @@
     const t2 = new Date(n); t2.setDate(t2.getDate() + 2);
     const t5 = new Date(n); t5.setDate(t5.getDate() + 5);
     tasks = [
-      { id: 5, text: 'Выпить стакан воды',        done: true,  deadline: toISO(n)  },
-      { id: 4, text: 'Написать отчёт',             done: false, deadline: toISO(t5) },
-      { id: 3, text: 'Прочитать 20 страниц книги', done: false, deadline: toISO(t2) },
-      { id: 2, text: 'Ответить на письма',         done: false, deadline: toISO(n)  },
-      { id: 1, text: 'Сделать зарядку',            done: false, deadline: toISO(y)  },
+      { id: 5, text: 'Выпить стакан воды',        done: true,  deadline: toISO(n),  priority: null,     tags: ['здоровье'] },
+      { id: 4, text: 'Написать отчёт',             done: false, deadline: toISO(t5), priority: 'high',   tags: ['работа']   },
+      { id: 3, text: 'Прочитать 20 страниц книги', done: false, deadline: toISO(t2), priority: 'low',    tags: ['личное']   },
+      { id: 2, text: 'Ответить на письма',         done: false, deadline: toISO(n),  priority: 'medium', tags: ['работа']   },
+      { id: 1, text: 'Сделать зарядку',            done: false, deadline: toISO(y),  priority: 'high',   tags: ['здоровье'] },
     ];
     save();
   }
