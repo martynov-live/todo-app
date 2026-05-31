@@ -25,6 +25,8 @@
       --danger-light: #fde8e8;
       --hover-bg: #f1f1ef;
       --check-done: #37352f;
+      --orange: #d9730d;
+      --orange-light: #fbecdd;
     }
 
     body {
@@ -48,13 +50,11 @@
       padding: 0;
     }
 
-    /* Cover area */
     .cover {
       height: 160px;
       background: linear-gradient(135deg, #e8f4fd 0%, #eef2ff 100%);
     }
 
-    /* Page header */
     .page-header {
       padding: 24px 56px 0;
     }
@@ -82,19 +82,16 @@
       margin-bottom: 32px;
     }
 
-    /* Divider */
     .divider {
       height: 1px;
       background: var(--border);
       margin: 0 56px 28px;
     }
 
-    /* Content area */
     .content {
       padding: 0 56px;
     }
 
-    /* Stats row */
     .stats-row {
       display: flex;
       gap: 24px;
@@ -118,14 +115,13 @@
     }
 
     .stat-dot.active { background: var(--accent); }
-    .stat-dot.done { background: var(--check-done); }
+    .stat-dot.done   { background: var(--check-done); }
 
     .stat-count {
       font-weight: 600;
       color: var(--text);
     }
 
-    /* Progress */
     .progress-row {
       display: flex;
       align-items: center;
@@ -155,7 +151,6 @@
       text-align: right;
     }
 
-    /* Add task input */
     .add-row {
       display: flex;
       align-items: center;
@@ -197,7 +192,6 @@
 
     .add-row input::placeholder { color: var(--text-placeholder); }
 
-    /* Filter tabs */
     .filters {
       display: flex;
       gap: 2px;
@@ -227,7 +221,6 @@
 
     .filter-btn:hover:not(.active) { color: var(--text); }
 
-    /* Task list */
     .task-list {
       display: flex;
       flex-direction: column;
@@ -236,27 +229,34 @@
 
     .task-item {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 10px;
       padding: 5px 10px;
       border-radius: 4px;
-      transition: background 0.12s;
+      transition: background 0.12s, box-shadow 0.12s;
       animation: fadeSlide 0.18s ease;
       position: relative;
     }
 
     .task-item:hover { background: var(--hover-bg); }
-    .task-item.done { opacity: 0.7; }
+    .task-item.done  { opacity: 0.7; }
+
+    /* Coloured left-edge accent for non-done urgent tasks */
+    .task-item.is-overdue:not(.done) {
+      box-shadow: inset 3px 0 0 rgba(235, 87, 87, 0.55);
+    }
+    .task-item.is-today:not(.done) {
+      box-shadow: inset 3px 0 0 rgba(217, 115, 13, 0.55);
+    }
 
     @keyframes fadeSlide {
       from { opacity: 0; transform: translateY(-4px); }
       to   { opacity: 1; transform: none; }
     }
 
-    /* Checkbox */
     .check-wrap {
       flex-shrink: 0;
-      margin-top: 2px;
+      margin-top: 0;
     }
 
     .check-wrap input[type="checkbox"] { display: none; }
@@ -296,7 +296,6 @@
 
     .check-wrap label:hover { border-color: var(--text-secondary); }
 
-    /* Task text */
     .task-text {
       flex: 1;
       font-size: 0.93rem;
@@ -311,6 +310,42 @@
       color: var(--done-text);
     }
 
+    /* ── Deadline button ── */
+    .deadline-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: none;
+      border: none;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: inherit;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.12s, background 0.12s, color 0.12s;
+    }
+
+    /* No date — icon only, visible on row hover */
+    .deadline-btn.no-date {
+      color: var(--text-placeholder);
+      opacity: 0;
+    }
+    .task-item:hover .deadline-btn.no-date { opacity: 1; }
+    .deadline-btn.no-date:hover { background: var(--hover-bg); opacity: 1; }
+
+    /* Date set states */
+    .deadline-btn.future  { color: var(--text-secondary); background: var(--hover-bg); }
+    .deadline-btn.future:hover  { background: var(--border-hover); }
+
+    .deadline-btn.today-due { color: var(--orange); background: var(--orange-light); }
+    .deadline-btn.today-due:hover { filter: brightness(0.93); }
+
+    .deadline-btn.overdue   { color: var(--danger); background: var(--danger-light); }
+    .deadline-btn.overdue:hover   { filter: brightness(0.93); }
+
     /* Delete button */
     .del-btn {
       flex-shrink: 0;
@@ -323,31 +358,21 @@
       border-radius: 4px;
       opacity: 0;
       transition: opacity 0.12s, color 0.12s, background 0.12s;
-      margin-top: 1px;
       line-height: 1;
     }
 
     .task-item:hover .del-btn { opacity: 1; }
     .del-btn:hover { color: var(--danger); background: var(--danger-light); }
 
-    /* Empty state */
     .empty {
       padding: 40px 0;
       text-align: center;
       color: var(--text-placeholder);
     }
 
-    .empty-icon {
-      font-size: 2rem;
-      margin-bottom: 8px;
-      opacity: 0.5;
-    }
+    .empty-icon { font-size: 2rem; margin-bottom: 8px; opacity: 0.5; }
+    .empty p { font-size: 0.85rem; }
 
-    .empty p {
-      font-size: 0.85rem;
-    }
-
-    /* Clear done */
     .clear-btn {
       width: 100%;
       background: none;
@@ -366,7 +391,116 @@
     .clear-btn:hover { color: var(--danger); background: var(--danger-light); }
     .clear-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
 
-    /* Responsive */
+    /* ── Calendar popup ── */
+    .cal-popup {
+      position: fixed;
+      z-index: 9999;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+      padding: 14px;
+      width: 256px;
+      font-family: 'Inter', sans-serif;
+      user-select: none;
+    }
+
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .cal-nav {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: background 0.12s, color 0.12s;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .cal-nav:hover { background: var(--hover-bg); color: var(--text); }
+
+    .cal-month-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+    }
+
+    .cal-day-name {
+      text-align: center;
+      font-size: 0.68rem;
+      color: var(--text-placeholder);
+      padding: 4px 0 6px;
+      font-weight: 500;
+    }
+
+    .cal-cell {
+      text-align: center;
+      font-size: 0.8rem;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--text);
+      transition: background 0.1s, color 0.1s;
+    }
+
+    .cal-cell:hover:not(.cal-other):not(.cal-selected) { background: var(--hover-bg); }
+    .cal-cell.cal-other  { color: var(--text-placeholder); cursor: default; }
+    .cal-cell.cal-other:hover { background: none; }
+    .cal-cell.cal-today:not(.cal-selected)  { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+    .cal-cell.cal-selected {
+      background: var(--text) !important;
+      color: #fff !important;
+      font-weight: 600;
+    }
+
+    .cal-footer {
+      margin-top: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 28px;
+    }
+
+    .cal-footer-hint {
+      font-size: 0.72rem;
+      color: var(--text-placeholder);
+    }
+
+    .cal-clear-btn {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 3px 8px;
+      border-radius: 4px;
+      transition: background 0.12s, color 0.12s;
+    }
+    .cal-clear-btn:hover { background: var(--danger-light); color: var(--danger); }
+
     @media (max-width: 600px) {
       .page-header { padding: 20px 20px 0; }
       .content { padding: 0 20px; }
@@ -435,25 +569,53 @@
   let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   let filter = 'all';
 
-  const listEl      = document.getElementById('task-list');
-  const inputEl     = document.getElementById('task-input');
-  const formEl      = document.getElementById('add-form');
-  const addRow      = document.getElementById('add-row');
-  const clearBtn    = document.getElementById('clear-btn');
-  const filterBtns  = document.querySelectorAll('.filter-btn');
-  const statTotal   = document.getElementById('stat-total');
-  const statActive  = document.getElementById('stat-active');
-  const statDone    = document.getElementById('stat-done');
+  // Calendar state
+  let calEl = null;
+  let calTaskId = null;
+  let calYear = 0;
+  let calMonth = 0;
+
+  const listEl       = document.getElementById('task-list');
+  const inputEl      = document.getElementById('task-input');
+  const formEl       = document.getElementById('add-form');
+  const addRow       = document.getElementById('add-row');
+  const clearBtn     = document.getElementById('clear-btn');
+  const filterBtns   = document.querySelectorAll('.filter-btn');
+  const statTotal    = document.getElementById('stat-total');
+  const statActive   = document.getElementById('stat-active');
+  const statDone     = document.getElementById('stat-done');
   const progressFill = document.getElementById('progress-fill');
   const progressPct  = document.getElementById('progress-pct');
   const pageMeta     = document.getElementById('page-meta');
 
   function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks)); }
 
+  // ── Date helpers ──────────────────────────────────────────────
+
+  function toISO(d) {
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+
+  function todayISO() { return toISO(new Date()); }
+
+  function deadlineStatus(ds) {
+    if (!ds) return null;
+    const t = todayISO();
+    if (ds < t) return 'overdue';
+    if (ds === t) return 'today-due';
+    return 'future';
+  }
+
+  function fmtDate(ds) {
+    const [y, m, d] = ds.split('-').map(Number);
+    const months = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+    return y === new Date().getFullYear() ? `${d} ${months[m-1]}` : `${d} ${months[m-1]} ${y}`;
+  }
+
+  // ── Stats & meta ──────────────────────────────────────────────
+
   function updateMeta() {
-    const now = new Date();
-    const opts = { day: 'numeric', month: 'long', year: 'numeric' };
-    pageMeta.textContent = now.toLocaleDateString('ru-RU', opts);
+    pageMeta.textContent = new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
   function updateStats() {
@@ -469,6 +631,8 @@
     clearBtn.disabled = done === 0;
   }
 
+  // ── Render ────────────────────────────────────────────────────
+
   function getFiltered() {
     if (filter === 'active') return tasks.filter(t => !t.done);
     if (filter === 'done')   return tasks.filter(t =>  t.done);
@@ -480,21 +644,34 @@
   }
 
   function render() {
+    closeCal();
     const visible = getFiltered();
     listEl.innerHTML = '';
 
     if (visible.length === 0) {
       const msgs = {
         all:    ['📋', 'Нет задач. Добавьте первую выше.'],
-        active: ['✓', 'Нет активных задач.'],
-        done:   ['○', 'Нет выполненных задач.'],
+        active: ['✓',  'Нет активных задач.'],
+        done:   ['○',  'Нет выполненных задач.'],
       };
       const [ico, txt] = msgs[filter];
       listEl.innerHTML = `<div class="empty"><div class="empty-icon">${ico}</div><p>${txt}</p></div>`;
     } else {
       visible.forEach(task => {
+        const status = deadlineStatus(task.deadline);
+
+        let cls = 'task-item';
+        if (task.done) cls += ' done';
+        if (!task.done && status === 'overdue')   cls += ' is-overdue';
+        if (!task.done && status === 'today-due') cls += ' is-today';
+
+        const dlLabel = task.deadline
+          ? `📅 ${fmtDate(task.deadline)}`
+          : '📅';
+        const dlCls = task.deadline ? (status || 'future') : 'no-date';
+
         const div = document.createElement('div');
-        div.className = 'task-item' + (task.done ? ' done' : '');
+        div.className = cls;
         div.dataset.id = task.id;
         div.innerHTML = `
           <div class="check-wrap">
@@ -502,20 +679,29 @@
             <label for="cb-${task.id}"></label>
           </div>
           <span class="task-text">${escHtml(task.text)}</span>
+          <button class="deadline-btn ${dlCls}" title="Установить дедлайн">${dlLabel}</button>
           <button class="del-btn" title="Удалить">✕</button>
         `;
+
         div.querySelector('input[type="checkbox"]').addEventListener('change', () => toggle(task.id));
         div.querySelector('.del-btn').addEventListener('click', () => remove(task.id));
+        div.querySelector('.deadline-btn').addEventListener('click', e => {
+          e.stopPropagation();
+          openCal(task.id, e.currentTarget);
+        });
+
         listEl.appendChild(div);
       });
     }
     updateStats();
   }
 
+  // ── CRUD ──────────────────────────────────────────────────────
+
   function add(text) {
     text = text.trim();
     if (!text) return;
-    tasks.unshift({ id: Date.now(), text, done: false });
+    tasks.unshift({ id: Date.now(), text, done: false, deadline: null });
     save();
     render();
   }
@@ -530,6 +716,141 @@
     save();
     render();
   }
+
+  function setDeadline(id, ds) {
+    const t = tasks.find(t => t.id === id);
+    if (t) { t.deadline = ds || null; save(); render(); }
+  }
+
+  // ── Calendar ──────────────────────────────────────────────────
+
+  function openCal(taskId, anchorEl) {
+    if (calEl && calTaskId === taskId) { closeCal(); return; }
+    closeCal();
+
+    calTaskId = taskId;
+    const task = tasks.find(t => t.id === taskId);
+
+    if (task?.deadline) {
+      const [y, m] = task.deadline.split('-').map(Number);
+      calYear = y; calMonth = m - 1;
+    } else {
+      const now = new Date();
+      calYear = now.getFullYear(); calMonth = now.getMonth();
+    }
+
+    calEl = document.createElement('div');
+    calEl.className = 'cal-popup';
+    calEl.addEventListener('click', e => e.stopPropagation());
+    document.body.appendChild(calEl);
+
+    buildCal();
+    positionCal(anchorEl);
+  }
+
+  function buildCal() {
+    const task = tasks.find(t => t.id === calTaskId);
+    const sel   = task?.deadline;
+    const today = todayISO();
+
+    const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    const DAYS   = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const firstDow    = (new Date(calYear, calMonth, 1).getDay() + 6) % 7; // Mon = 0
+    const prevTotal   = new Date(calYear, calMonth, 0).getDate();
+
+    let cells = [];
+
+    for (let i = firstDow - 1; i >= 0; i--)
+      cells.push({ day: prevTotal - i, other: true });
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      cells.push({ day: d, ds, other: false, isToday: ds === today, isSel: ds === sel });
+    }
+
+    const fill = Math.ceil(cells.length / 7) * 7 - cells.length;
+    for (let i = 1; i <= fill; i++)
+      cells.push({ day: i, other: true });
+
+    const dayNames = DAYS.map(d => `<div class="cal-day-name">${d}</div>`).join('');
+
+    const dayCells = cells.map(c => {
+      if (c.other) return `<div class="cal-cell cal-other">${c.day}</div>`;
+      let cls = 'cal-cell';
+      if (c.isToday) cls += ' cal-today';
+      if (c.isSel)   cls += ' cal-selected';
+      return `<div class="${cls}" data-date="${c.ds}">${c.day}</div>`;
+    }).join('');
+
+    calEl.innerHTML = `
+      <div class="cal-header">
+        <button class="cal-nav" id="cal-prev">‹</button>
+        <span class="cal-month-label">${MONTHS[calMonth]} ${calYear}</span>
+        <button class="cal-nav" id="cal-next">›</button>
+      </div>
+      <div class="cal-grid">
+        ${dayNames}
+        ${dayCells}
+      </div>
+      <div class="cal-footer">
+        ${sel
+          ? `<button class="cal-clear-btn">Очистить дату</button>`
+          : `<span class="cal-footer-hint">Нажмите на дату</span>`}
+      </div>
+    `;
+
+    calEl.querySelector('#cal-prev').addEventListener('click', e => {
+      e.stopPropagation();
+      if (--calMonth < 0) { calMonth = 11; calYear--; }
+      buildCal();
+    });
+    calEl.querySelector('#cal-next').addEventListener('click', e => {
+      e.stopPropagation();
+      if (++calMonth > 11) { calMonth = 0; calYear++; }
+      buildCal();
+    });
+
+    calEl.querySelectorAll('.cal-cell:not(.cal-other)').forEach(el => {
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        setDeadline(calTaskId, el.dataset.date);
+        closeCal();
+      });
+    });
+
+    const clrBtn = calEl.querySelector('.cal-clear-btn');
+    if (clrBtn) {
+      clrBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        setDeadline(calTaskId, null);
+        closeCal();
+      });
+    }
+  }
+
+  function positionCal(anchor) {
+    const r = anchor.getBoundingClientRect();
+    const W = 256, H = 290;
+    let left = r.left;
+    let top  = r.bottom + 6;
+
+    if (left + W > window.innerWidth  - 8) left = window.innerWidth  - W - 8;
+    if (left < 8)                          left = 8;
+    if (top  + H > window.innerHeight - 8) top  = r.top - H - 6;
+    if (top  < 8)                          top  = 8;
+
+    calEl.style.left = left + 'px';
+    calEl.style.top  = top  + 'px';
+  }
+
+  function closeCal() {
+    if (calEl) { calEl.remove(); calEl = null; }
+    calTaskId = null;
+  }
+
+  // ── Event listeners ───────────────────────────────────────────
 
   formEl.addEventListener('submit', e => {
     e.preventDefault();
@@ -555,11 +876,20 @@
     });
   });
 
+  document.addEventListener('click', closeCal);
+
+  // ── Init ──────────────────────────────────────────────────────
+
   if (tasks.length === 0) {
+    const now  = new Date();
+    const yest = new Date(now); yest.setDate(yest.getDate() - 1);
+    const tom  = new Date(now); tom.setDate(tom.getDate() + 2);
+
     tasks = [
-      { id: 3, text: 'Выпить стакан воды', done: true },
-      { id: 2, text: 'Прочитать 20 страниц книги', done: false },
-      { id: 1, text: 'Сделать зарядку', done: false },
+      { id: 4, text: 'Выпить стакан воды',        done: true,  deadline: toISO(now)  },
+      { id: 3, text: 'Прочитать 20 страниц книги', done: false, deadline: toISO(tom)  },
+      { id: 2, text: 'Ответить на письма',         done: false, deadline: toISO(now)  },
+      { id: 1, text: 'Сделать зарядку',            done: false, deadline: toISO(yest) },
     ];
     save();
   }
