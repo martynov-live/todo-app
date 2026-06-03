@@ -2,13 +2,14 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
   <title>Мои задачи</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { touch-action: manipulation; }
 
     :root {
       --bg: #ffffff;
@@ -271,7 +272,7 @@
 
     .add-row input {
       flex: 1; border: none; outline: none; background: transparent;
-      font-family: inherit; font-size: 0.93rem; color: var(--text); caret-color: var(--accent);
+      font-family: inherit; font-size: 16px; color: var(--text); caret-color: var(--accent);
     }
     .add-row input::placeholder { color: var(--text-placeholder); }
 
